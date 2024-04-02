@@ -1,7 +1,7 @@
 @font-face {
   font-family: "AstroSpace";
-  src: url("./fonts/AstroSpace-0Wl3o.otf") format("opentype"),
-    url("./fonts/AstroSpace-eZ2Bg.ttf") format("truetype");
+  src: url("fonts/AstroSpace-0Wl3o.otf") format("opentype"),
+    url("fonts/AstroSpace-eZ2Bg.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

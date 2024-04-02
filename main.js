@@ -45,26 +45,6 @@ function onMouseMove(event) {
 
 let intersected = false; // Track if we're currently intersecting the object
 
-function checkIntersection() {
-    console.log("checkIntersection")
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects([textMesh]); // Assuming textMesh is in scope
-    console.log(intersects)
-
-    if (intersects.length > 0) {
-        if (!intersected) {
-            // Change color only if it wasn't already changed on a previous check
-            textMesh.material.color.set(0xff0000); // Change to desired hover color
-            intersected = true;
-        }
-    } else {
-        if (intersected) {
-            // Reset color only if it was changed on a previous check
-            textMesh.material.color.set(0xffffff); // Change back to original color
-            intersected = false;
-        }
-    }
-}
 
 
 function animate() {

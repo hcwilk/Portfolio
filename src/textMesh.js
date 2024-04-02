@@ -5,7 +5,7 @@ import { TTFLoader } from 'three/examples/jsm/loaders/TTFLoader.js';
 async function createTextMesh() {
     return new Promise((resolve, reject) => {
         const ttfLoader = new TTFLoader();
-        ttfLoader.load('../fonts/Atmospheric-rg4aL.ttf', function (buffer) {
+        ttfLoader.load('fonts/Atmospheric-rg4aL.ttf', function (buffer) {
             const font = new THREE.FontLoader().parse(buffer);
 
             // Split your text into lines
