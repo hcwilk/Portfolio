@@ -12,6 +12,7 @@ html {
   padding: 0;
   scroll-behavior: smooth;
   font-family: "AstroSpace", sans-serif;
+  overflow-x: hidden;
 }
 
 header {
