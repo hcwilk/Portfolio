@@ -6,8 +6,13 @@ import { createTextMesh } from './src/textMesh';
 import { scene, camera, renderer, controls, appendRendererToDOM } from './src/sceneSetup';
 
 
-const textMesh = await createTextMesh();
-scene.add(textMesh);
+async function init() {
+    const textMesh = await createTextMesh();
+    scene.add(textMesh);
+    animate();
+}
+
+init(); // Call the async function
 
 appendRendererToDOM('threejs-container');
 
@@ -64,8 +69,6 @@ function checkIntersection() {
 
 function animate() {
     requestAnimationFrame(animate);
-
-    checkIntersection();
 
     // cube.rotation.x += 0.01;
     // cube.rotation.y += 0.01;
