@@ -11,12 +11,6 @@ scene.add(textMesh);
 
 appendRendererToDOM('threejs-container');
 
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
-
-
-
-
 
 // Header fade in
 document.addEventListener('scroll', function () {
@@ -37,10 +31,6 @@ function onMouseMove(event) {
     // (-1 to +1) for both components
     const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
     const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-
-    mouse.x = mouseX;
-    mouse.y = mouseY;
-
     // Set the scene or camera rotation based on the mouse position
     // Here, we're applying a small rotation to the scene. Adjust the factors to control the sensitivity.
     const maxRotationAngle = Math.PI / 180 * 50; // Max rotation of 5 degrees
