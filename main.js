@@ -2,10 +2,9 @@ import './style.css';
 import { createBoxMesh } from './src/meshes/boxMesh';
 import { createTextMesh } from './src/meshes/textMesh';
 import { createGeneralTextMesh } from './src/meshes/generalTextMesh';
-import { scene, camera, renderer, controls, appendRendererToDOM } from './src/sceneSetup';
+import { scene, camera, renderer, appendRendererToDOM } from './src/sceneSetup';
 import * as THREE from 'three';
 import { TextGeometry } from 'three/src/geometries/TextGeometry';
-import { createCubeMesh } from './src/meshes/dataMesh';
 
 function addStarField() {
     const starsGeometry = new THREE.BufferGeometry();
@@ -51,12 +50,24 @@ appendRendererToDOM('threejs-container');
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
-window.addEventListener('click', onDocumentMouseClick, false);
+window.addEventListener('click', onPointerDown, false);
+window.addEventListener('touchend', onPointerDown, false); // Add this line
 
-async function onDocumentMouseClick(event) {
-    console.log('Mouse clicked');
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+async function onPointerDown(event) {
+    event.preventDefault(); // Prevents additional events like `click` after `touchend`
+
+    let clientX = event.clientX;
+    let clientY = event.clientY;
+
+    // Adapt for touch events
+    if (event.touches) {
+        clientX = event.touches[0].clientX;
+        clientY = event.touches[0].clientY;
+    }
+
+    mouse.x = (clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
     raycaster.setFromCamera(mouse, camera);
 
     const intersects = raycaster.intersectObjects(scene.children, true);
