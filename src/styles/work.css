@@ -1,7 +1,39 @@
 .work-experience {
   scroll-margin-top: 45px;
-  max-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: start;
+  height: fit-content;
+}
+
+.work-experience h2 {
+}
+
+.work-title {
+  border: none;
+  font-family: "AstroSpace", sans-serif;
+}
+
+.work-list {
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: height 0.5s ease-out; /* Adjust time as needed */
+}
+
+.work-list.active {
+  height: fit-content;
+}
+
+.work-item {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  height: fit-content;
+}
+
+.work-item h3 {
+  margin: 0;
 }

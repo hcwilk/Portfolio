@@ -28,6 +28,9 @@ function addStarField() {
     scene.add(stars);
 }
 
+const titles = document.querySelectorAll('.work-title');
+
+
 
 let textMesh;
 let boxMesh;
@@ -42,6 +45,25 @@ async function init() {
     scene.add(boxMesh);
     // scene.add(generalTextMesh);
     // scene.add(cubeMesh);
+
+    titles.forEach(title => {
+        title.addEventListener('click', () => {
+            const workList = title.nextElementSibling; // Assuming .work-list follows .work-title
+            if (workList.classList.contains('active')) {
+                workList.style.height = null;
+                workList.classList.remove('active');
+            } else {
+                const prevHeight = workList.clientHeight;
+                workList.classList.add('active');
+                const fullHeight = workList.clientHeight;
+                workList.style.height = prevHeight + 'px';
+                workList.offsetHeight; // Force reflow
+                workList.style.height = fullHeight + 'px';
+            }
+        })
+    })
+
+
 
     // addStarField();
     animate();
