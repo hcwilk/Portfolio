@@ -5,6 +5,9 @@ import { createGeneralTextMesh } from './src/meshes/generalTextMesh';
 import { scene, camera, renderer, appendRendererToDOM } from './src/sceneSetup';
 import * as THREE from 'three';
 import { TextGeometry } from 'three/src/geometries/TextGeometry';
+import { mobileCheck } from './src/utils/isMobile';
+
+console.log('ismobile', mobileCheck())
 
 function addStarField() {
     const starsGeometry = new THREE.BufferGeometry();

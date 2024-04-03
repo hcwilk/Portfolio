@@ -15,7 +15,7 @@ async function createTextMesh() {
                 const textGeometry = new TextGeometry(line, {
                     font: font,
                     size: 5,
-                    height: 1.0,
+                    height: 2,
                 });
 
                 const textMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });

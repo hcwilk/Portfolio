@@ -39,7 +39,7 @@ async function createBoxMesh() {
         const bigGroup = new THREE.Group();
         for (let i = 0; i < positions.length; i++) {
 
-            const boxGeometry = new RoundedBoxGeometry(9, 9, 2, 2, 0.5); // width, height, depth, segment count, radius
+            const boxGeometry = new RoundedBoxGeometry(9, 9, 2.5, 2, 0.75); // width, height, depth, segment count, radius
 
             const boxMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
             const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
