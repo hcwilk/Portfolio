@@ -3,19 +3,37 @@ import * as THREE from 'three';
 import { TextGeometry } from 'three/src/geometries/TextGeometry';
 import { TTFLoader } from 'three/examples/jsm/loaders/TTFLoader.js';
 import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
+import { positions } from '../data/orbs';
+
+async function createSphereLabel(text) {
+    const ttfLoader = new TTFLoader();
+
+    try {
+        const buffer = await ttfLoader.loadAsync('fonts/Atmospheric-rg4aL.ttf');
+        const font = new THREE.FontLoader().parse(buffer);
+
+        const textGeo = new TextGeometry(text, {
+            font: font,
+            size: 1,
+            height: 0.1,
+        });
+
+        const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const textMesh = new THREE.Mesh(textGeo, textMaterial);
+        textMesh.visible = false;
+        textMesh.position.set(5, 0, 0);
+
+        return textMesh;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
 
 
-const positions = [
-    { x: -20, y: -15, z: 0, URL: 'https://www.linkedin.com/in/harrison-cole-wilkinson-528310191/', image: 'images/linked.png' },
-    { x: 0, y: -23, z: 0, URL: "/files/Cole_Wilkinson_Resume.pdf", image: 'images/resume.png' },
-    { x: 20, y: -15, z: 0, URL: "#contact", image: 'images/mail.png' },
-    { x: 20, y: 10, z: 0 },
-    { x: -20, y: 10, z: 0 },
-    { x: 0, y: 18, z: 0 }
-];
 
-async function createItemMesh() {
-    return new Promise((resolve, reject) => {
+async function createSphereMesh() {
+    return new Promise(async (resolve, reject) => {
         const bigGroup = new THREE.Group();
         for (let i = 0; i < positions.length; i++) {
 
@@ -53,6 +71,11 @@ async function createItemMesh() {
             if (i == 1) {
                 group.userData.isResume = true;
             }
+
+
+            const label = await createSphereLabel(positions[i].label); // Replace with your actual text
+            group.add(label);
+
             bigGroup.add(group);
         }
         resolve(bigGroup);
@@ -63,4 +86,4 @@ async function createItemMesh() {
     });
 }
 
-export { createItemMesh };
+export { createSphereMesh };
