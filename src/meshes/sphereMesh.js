@@ -21,7 +21,7 @@ async function createSphereLabel(text) {
         const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
         const textMesh = new THREE.Mesh(textGeo, textMaterial);
         textMesh.visible = false;
-        textMesh.position.set(5, 0, 0);
+        textMesh.position.set(5.2, 0, 0);
 
         return textMesh;
     } catch (error) {

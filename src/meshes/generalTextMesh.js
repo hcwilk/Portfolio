@@ -12,7 +12,7 @@ async function createGeneralTextMesh({ text }) {
 
             const textGeometry = new TextGeometry(text, {
                 font: font,
-                size: 5,
+                size: 2,
                 height: 1.0,
             });
 
@@ -20,7 +20,7 @@ async function createGeneralTextMesh({ text }) {
             const textMesh = new THREE.Mesh(textGeometry, textMaterial);
 
             // Vertical offset
-            textMesh.position.y = -20;
+            textMesh.position.y = -10;
 
             textGeometry.computeBoundingBox();
             textGeometry.center();

@@ -4,32 +4,7 @@ import { createTextMesh } from './src/meshes/textMesh';
 import { createGeneralTextMesh } from './src/meshes/generalTextMesh';
 import { scene, camera, renderer, controls, appendRendererToDOM } from './src/sceneSetup';
 import * as THREE from 'three';
-import { TextureLoader, SpriteMaterial, Sprite } from 'three';
 import { TextGeometry } from 'three/src/geometries/TextGeometry';
-
-function createTextSprite(message, fontsize = 32, fontface = 'Arial') {
-    console.log('Creating text sprite');
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    canvas.width = 256; // Define a fixed size for the canvas
-    canvas.height = 128; // Define a fixed size for the canvas
-
-    // Adjusted to center the text
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.font = `${fontsize}px ${fontface}`;
-    context.fillStyle = 'rgba(255, 255, 255, 1.0)';
-    context.fillText(message, canvas.width / 2, canvas.height / 2); // Adjust to write in the middle of the canvas
-
-    const texture = new THREE.Texture(canvas);
-    texture.needsUpdate = true;
-
-    const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
-    const sprite = new THREE.Sprite(spriteMaterial);
-    sprite.scale.set(2, 1, 1); // Scale the sprite so it's easier to see
-
-    return sprite;
-}
 
 
 

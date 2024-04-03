@@ -31,6 +31,8 @@ async function createTextMesh() {
             });
 
             group.position.y = (lines.length - 1) * 3.5; // Adjust to vertically center the group of lines
+            group.name = `name`;
+            group.userData = { URL: '#about' };
             resolve(group);
         }, undefined, function (error) {
             console.error(error);
