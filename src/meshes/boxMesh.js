@@ -3,11 +3,13 @@ import * as THREE from 'three';
 import { TextGeometry } from 'three/src/geometries/TextGeometry';
 import { TTFLoader } from 'three/examples/jsm/loaders/TTFLoader.js';
 import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
-import { positions } from '../data/orbs';
+import { textPositions } from '../data/orbs';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { adjustForMobile, isMobile } from '../utils/isMobile';
 
+const positions = textPositions();
 
-async function createBoxLabel(text) {
+async function createBoxLabel(text, i) {
     const ttfLoader = new TTFLoader();
 
     try {
@@ -22,9 +24,12 @@ async function createBoxLabel(text) {
 
         const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
         const textMesh = new THREE.Mesh(textGeo, textMaterial);
-        textMesh.visible = false;
-        textMesh.position.set(5.2, 0, 0);
-
+        if (isMobile()) {
+            adjustForMobile(textMesh, i);
+        } else {
+            textMesh.visible = false;
+            textMesh.position.set(5.2, 0, 0);
+        }
         return textMesh;
     } catch (error) {
         console.error(error);
@@ -76,7 +81,7 @@ async function createBoxMesh() {
             }
 
 
-            const label = await createBoxLabel(positions[i].label); // Replace with your actual text
+            const label = await createBoxLabel(positions[i].label, i); // Replace with your actual text
             group.add(label);
 
             bigGroup.add(group);
