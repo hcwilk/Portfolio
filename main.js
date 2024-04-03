@@ -55,15 +55,20 @@ window.addEventListener('touchend', onPointerDown, false); // Add this line
 
 
 async function onPointerDown(event) {
-    event.preventDefault(); // Prevents additional events like `click` after `touchend`
+    let clientX, clientY;
 
-    let clientX = event.clientX;
-    let clientY = event.clientY;
-
-    // Adapt for touch events
-    if (event.touches) {
-        clientX = event.touches[0].clientX;
-        clientY = event.touches[0].clientY;
+    // Check for touch event and preventDefault safely
+    if (event.changedTouches) {
+        if (event.type === "touchend") {
+            clientX = event.changedTouches[0].clientX;
+            clientY = event.changedTouches[0].clientY;
+        } else {
+            event.preventDefault(); // Prevent default only for touchstart/move
+        }
+    } else {
+        // It's a mouse event, proceed as before
+        clientX = event.clientX;
+        clientY = event.clientY;
     }
 
     mouse.x = (clientX / window.innerWidth) * 2 - 1;
