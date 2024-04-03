@@ -6,12 +6,12 @@ import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
 
 
 const positions = [
+    { x: -20, y: -15, z: 0, URL: 'https://www.linkedin.com/in/harrison-cole-wilkinson-528310191/', image: 'images/linked.png' },
+    { x: 0, y: -23, z: 0, URL: "/files/Cole_Wilkinson_Resume.pdf", image: 'images/resume.png' },
+    { x: 20, y: -15, z: 0, URL: "#contact", image: 'images/mail.png' },
     { x: 20, y: 10, z: 0 },
-    { x: 0, y: 18, z: 0 },
     { x: -20, y: 10, z: 0 },
-    { x: 20, y: -15, z: 0 },
-    { x: - 20, y: -15, z: 0 },
-    { x: 0, y: -23, z: 0 }
+    { x: 0, y: 18, z: 0 }
 ];
 
 async function createItemMesh() {
@@ -28,7 +28,7 @@ async function createItemMesh() {
             group.add(sphereMesh);
 
             const textureLoader = new THREE.TextureLoader();
-            const decalTexture = textureLoader.load('images/linked.png');
+            const decalTexture = textureLoader.load(positions[i].image);
 
             const decalMaterial = new THREE.MeshPhongMaterial({
                 map: decalTexture,
@@ -49,7 +49,10 @@ async function createItemMesh() {
             group.add(decalMesh);
             group.position.set(positions[i].x, positions[i].y, positions[i].z);
             group.name = `item-${i}`;
-            group.userData = { URL: 'https://www.linkedin.com/in/harrison-cole-wilkinson-528310191/' };
+            group.userData = { URL: positions[i].URL };
+            if (i == 1) {
+                group.userData.isResume = true;
+            }
             bigGroup.add(group);
         }
         resolve(bigGroup);
