@@ -1,4 +1,6 @@
 import './style.css';
+import './src/styles/footer.css'
+import './src/styles/work.css'
 import { createBoxMesh } from './src/meshes/boxMesh';
 import { createTextMesh } from './src/meshes/textMesh';
 import { createGeneralTextMesh } from './src/meshes/generalTextMesh';
@@ -127,7 +129,19 @@ async function onMouseMove(event) {
     mouse.x = mouseX;
     mouse.y = mouseY;
     // if mouse y is off screen,return 
-    if (mouse.y > 1 || mouse.y < -1) return;
+    if (mouse.y > 1 || mouse.y < -1) {
+        document.body.style.cursor = 'auto';
+        if (INTERSECTED) {
+
+            INTERSECTED.scale.set(1, 1, 1);
+            INTERSECTED.rotation.set(0, 0, 0);
+            const label = INTERSECTED.children.find(obj => obj instanceof THREE.Mesh && obj.geometry instanceof TextGeometry);
+            if (label) label.visible = false;
+
+        }
+        INTERSECTED = null;
+        return;
+    }
 
 
     const maxRotationAngle = Math.PI / 180 * 20;
