@@ -1,22 +1,46 @@
 import './style.css';
-import { createSphereMesh } from './src/meshes/sphereMesh';
+import { createBoxMesh } from './src/meshes/boxMesh';
 import { createTextMesh } from './src/meshes/textMesh';
 import { createGeneralTextMesh } from './src/meshes/generalTextMesh';
 import { scene, camera, renderer, controls, appendRendererToDOM } from './src/sceneSetup';
 import * as THREE from 'three';
 import { TextGeometry } from 'three/src/geometries/TextGeometry';
+import { createCubeMesh } from './src/meshes/dataMesh';
 
+function addStarField() {
+    const starsGeometry = new THREE.BufferGeometry();
+    const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.7 });
+
+    const starVertices = [];
+    for (let i = 0; i < 10000; i++) {
+        const x = THREE.MathUtils.randFloatSpread(2000);
+        const y = THREE.MathUtils.randFloatSpread(2000);
+        const z = THREE.MathUtils.randFloatSpread(2000);
+        starVertices.push(x, y, z);
+    }
+
+    starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+    const stars = new THREE.Points(starsGeometry, starsMaterial);
+
+    scene.add(stars);
+}
 
 
 let textMesh;
-let sphereMesh;
+let boxMesh;
+// let cubeMesh;
 async function init() {
     textMesh = await createTextMesh();
-    sphereMesh = await createSphereMesh();
+    boxMesh = await createBoxMesh();
+    // cubeMesh = await createCubeMesh();
 
     scene.add(textMesh);
-    scene.add(sphereMesh);
+    scene.add(boxMesh);
+    // scene.add(cubeMesh);
+
+    // addStarField();
     animate();
+
 }
 
 init();
@@ -77,13 +101,13 @@ async function onMouseMove(event) {
 
     mouse.x = mouseX;
     mouse.y = mouseY;
-    const maxRotationAngle = Math.PI / 180 * 30;
+    const maxRotationAngle = Math.PI / 180 * 20;
     scene.rotation.y = maxRotationAngle * mouseX / 2;
     scene.rotation.x = -1 * maxRotationAngle * mouseY;
 
     raycaster.setFromCamera(mouse, camera);
 
-    const intersects = raycaster.intersectObjects(sphereMesh.children, true);
+    const intersects = raycaster.intersectObjects(boxMesh.children, true);
 
     if (intersects.length > 0) {
         const intersectedGroup = intersects[0].object.parent;

@@ -4,8 +4,10 @@ import { TextGeometry } from 'three/src/geometries/TextGeometry';
 import { TTFLoader } from 'three/examples/jsm/loaders/TTFLoader.js';
 import { DecalGeometry } from 'three/examples/jsm/geometries/DecalGeometry.js';
 import { positions } from '../data/orbs';
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 
-async function createSphereLabel(text) {
+
+async function createBoxLabel(text) {
     const ttfLoader = new TTFLoader();
 
     try {
@@ -32,18 +34,19 @@ async function createSphereLabel(text) {
 
 
 
-async function createSphereMesh() {
+async function createBoxMesh() {
     return new Promise(async (resolve, reject) => {
         const bigGroup = new THREE.Group();
         for (let i = 0; i < positions.length; i++) {
 
-            const sphereGeometry = new THREE.SphereGeometry(5, 32, 32);
-            const sphereMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
-            const sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
+            const boxGeometry = new RoundedBoxGeometry(9, 9, 2, 2, 0.5); // width, height, depth, segment count, radius
+
+            const boxMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
+            const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
 
             const group = new THREE.Group();
 
-            group.add(sphereMesh);
+            group.add(boxMesh);
 
             const textureLoader = new THREE.TextureLoader();
             const decalTexture = textureLoader.load(positions[i].image);
@@ -59,10 +62,10 @@ async function createSphereMesh() {
 
             // Decal size and position
             const decalSize = new THREE.Vector3(7, 7, 7);
-            const decalPosition = new THREE.Vector3(0, 0, 5); // Front of the sphere
+            const decalPosition = new THREE.Vector3(0, 0, 2); // Front of the Box
             const decalRotation = new THREE.Euler();
 
-            const decalGeometry = new DecalGeometry(sphereMesh, decalPosition, decalRotation, decalSize);
+            const decalGeometry = new DecalGeometry(boxMesh, decalPosition, decalRotation, decalSize);
             const decalMesh = new THREE.Mesh(decalGeometry, decalMaterial);
             group.add(decalMesh);
             group.position.set(positions[i].x, positions[i].y, positions[i].z);
@@ -73,7 +76,7 @@ async function createSphereMesh() {
             }
 
 
-            const label = await createSphereLabel(positions[i].label); // Replace with your actual text
+            const label = await createBoxLabel(positions[i].label); // Replace with your actual text
             group.add(label);
 
             bigGroup.add(group);
@@ -86,4 +89,4 @@ async function createSphereMesh() {
     });
 }
 
-export { createSphereMesh };
+export { createBoxMesh };

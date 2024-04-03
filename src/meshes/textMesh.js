@@ -18,7 +18,7 @@ async function createTextMesh() {
                     height: 1.0,
                 });
 
-                const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+                const textMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
                 const textMesh = new THREE.Mesh(textGeometry, textMaterial);
 
                 // Vertical offset
