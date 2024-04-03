@@ -6,7 +6,7 @@ import { scene, camera, renderer, controls, appendRendererToDOM } from './src/sc
 import * as THREE from 'three';
 
 const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
+let mouse = new THREE.Vector2();
 
 let textMesh; // Declare the textMesh variable in the global scope
 let sphereMesh; // Declare the sphereMesh variable in the global scope
@@ -28,28 +28,39 @@ appendRendererToDOM('threejs-container');
 window.addEventListener('click', onDocumentMouseClick, false);
 
 function onDocumentMouseClick(event) {
+
     console.log('Mouse clicked');
-    // Calculate mouse position in normalized device coordinates (-1 to +1) for both components
+    // ... (existing mouse position calculation code)
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
     // Update the picking ray with the camera and mouse position
     raycaster.setFromCamera(mouse, camera);
 
-    // Calculate objects intersecting the picking ray. Assume your text mesh is in an array of clickable objects.
-    const intersects = raycaster.intersectObjects([textMesh, itemMesh], true);
+    // Calculate objects intersecting the picking ray.
+    const intersects = raycaster.intersectObjects(scene.children, true);
 
     console.log(intersects);
 
-    // Check if the text mesh was clicked and perform an action
+    // Check if a sphere was clicked and perform an action
     for (let i = 0; i < intersects.length; i++) {
-        if (intersects[i].object === textMesh) { // Assuming textMesh is in the scope
-            // Perform action if the textMesh is clicked
-            console.log('Text mesh was clicked');
-            // You can call any function here, such as opening a link, or displaying information
+        let object = intersects[i].object;
+        // Traverse up the parent nodes to find the group with userData
+        console.log('iteration:', i)
+        while (object.parent && !object.userData['URL']) {
+            console.log('Object without userData:', object);
+            object = object.parent;
+        }
+        console.log('Object with userData:', object);
+        // Check if the group with userData was found
+        if (object.userData && object.userData['URL']) {
+            window.location.href = object.userData['URL']; // Redirect to the stored URL
+            console.log('Redirecting to URL:', object.userData.url);
+            break; // Stop the loop after finding the clicked sphere
         }
     }
 }
+
 
 // stuff
 
