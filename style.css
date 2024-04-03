@@ -1,7 +1,7 @@
 @font-face {
   font-family: "AstroSpace";
-  src: url("fonts/AstroSpace-0Wl3o.otf") format("opentype"),
-    url("fonts/AstroSpace-eZ2Bg.ttf") format("truetype");
+  src: url("./public/fonts/AstroSpace-0Wl3o.otf") format("opentype"),
+    url("./public/fonts/AstroSpace-eZ2Bg.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -10,7 +10,7 @@ body,
 html {
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
   font-family: "AstroSpace", sans-serif;
   overflow-x: hidden;
 }
@@ -22,9 +22,15 @@ header {
   justify-content: space-between;
   width: 100%;
   background-color: #333;
-  z-index: 10000;
-  opacity: 0; /* Start with the header transparent */
-  transition: opacity 0.5s ease; /* Transition effect for the opacity change */
+  z-index: 9;
+}
+
+footer {
+  position: relative;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 10px;
 }
 
 header h1 {
@@ -38,6 +44,8 @@ nav ul {
   margin: 0;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  height: 100%;
 }
 
 nav ul li {
@@ -55,12 +63,18 @@ nav ul li a:hover {
 }
 
 main {
-  margin-top: 60px; /* Adjust based on header height */
+  margin-top: 10px; /* Adjust based on header height */
+}
+
+#threejs-container {
+  z-index: 10;
+  position: relative;
 }
 
 section {
   height: 100vh;
   padding: 20px;
+  scroll-margin-top: 30px;
 }
 
 div {

@@ -8,7 +8,6 @@ async function createTextMesh() {
         ttfLoader.load('fonts/Atmospheric-rg4aL.ttf', function (buffer) {
             const font = new THREE.FontLoader().parse(buffer);
 
-            // Split your text into lines
             const lines = ["Cole", "Wilkinson"];
             const group = new THREE.Group();
 
@@ -19,14 +18,14 @@ async function createTextMesh() {
                     height: 1.0,
                 });
 
-                const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+                const textMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
                 const textMesh = new THREE.Mesh(textGeometry, textMaterial);
 
-                // Offset each line vertically
-                textMesh.position.y = -index * 7; // Adjust the multiplier for different line heights
+                // Vertical offset
+                textMesh.position.y = -index * 7;
 
                 textGeometry.computeBoundingBox();
-                textGeometry.center(); // This centers the geometry horizontally
+                textGeometry.center();
 
                 group.add(textMesh);
             });

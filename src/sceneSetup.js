@@ -6,6 +6,12 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.z = 50;
 
+
+const light = new THREE.DirectionalLight(0xffffff, 1); // 0xffffff is the color, 1 is the intensity
+light.position.set(0, 0, 1); // Position the light to shine head-on
+scene.add(light);
+
+
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 

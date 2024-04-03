@@ -1,14 +1,21 @@
 import './style.css';
-import * as THREE from 'three';
-import { TextGeometry } from 'three/src/geometries/TextGeometry';
-import test from "./node_modules/three/examples/fonts/droid/droid_sans_regular.typeface.json"
 import { createTextMesh } from './src/textMesh';
+import { createItemMesh } from './src/itemsMesh';
 import { scene, camera, renderer, controls, appendRendererToDOM } from './src/sceneSetup';
 
+import * as THREE from 'three';
+
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+let textMesh; // Declare the textMesh variable in the global scope
+let itemMesh
 
 async function init() {
-    const textMesh = await createTextMesh();
+    textMesh = await createTextMesh();
+    itemMesh = await createItemMesh();
     scene.add(textMesh);
+    scene.add(itemMesh);
     animate();
 }
 
@@ -16,32 +23,49 @@ init(); // Call the async function
 
 appendRendererToDOM('threejs-container');
 
+// stuff
 
-// Header fade in
-document.addEventListener('scroll', function () {
-    const header = document.querySelector('header');
-    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-    if (scrollPosition > 250) {
-        header.style.opacity = 1;
-    } else {
-        header.style.opacity = 0;
+window.addEventListener('click', onDocumentMouseClick, false);
+
+function onDocumentMouseClick(event) {
+    console.log('Mouse clicked');
+    // Calculate mouse position in normalized device coordinates (-1 to +1) for both components
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    // Update the picking ray with the camera and mouse position
+    raycaster.setFromCamera(mouse, camera);
+
+    // Calculate objects intersecting the picking ray. Assume your text mesh is in an array of clickable objects.
+    const intersects = raycaster.intersectObjects([textMesh, itemMesh], true);
+
+    console.log(intersects);
+
+    // Check if the text mesh was clicked and perform an action
+    for (let i = 0; i < intersects.length; i++) {
+        if (intersects[i].object === textMesh) { // Assuming textMesh is in the scope
+            // Perform action if the textMesh is clicked
+            console.log('Text mesh was clicked');
+            // You can call any function here, such as opening a link, or displaying information
+        }
     }
-});
-
-
-window.addEventListener('mousemove', onMouseMove, false);
-
-function onMouseMove(event) {
-    // Calculate mouse position in normalized device coordinates
-    // (-1 to +1) for both components
-    const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-    const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-    // Set the scene or camera rotation based on the mouse position
-    // Here, we're applying a small rotation to the scene. Adjust the factors to control the sensitivity.
-    const maxRotationAngle = Math.PI / 180 * 50; // Max rotation of 5 degrees
-    scene.rotation.y = maxRotationAngle * mouseX / 2; // Rotate around y-axis based on mouse x-position
-    scene.rotation.x = -1 * maxRotationAngle * mouseY; // Rotate around x-axis based on mouse y-position
 }
+
+// stuff
+
+// window.addEventListener('mousemove', onMouseMove, false);
+
+// function onMouseMove(event) {
+//     // Calculate mouse position in normalized device coordinates
+//     // (-1 to +1) for both components
+//     const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+//     const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+//     // Set the scene or camera rotation based on the mouse position
+//     // Here, we're applying a small rotation to the scene. Adjust the factors to control the sensitivity.
+//     const maxRotationAngle = Math.PI / 180 * 50; // Max rotation of 5 degrees
+//     scene.rotation.y = maxRotationAngle * mouseX / 2; // Rotate around y-axis based on mouse x-position
+//     scene.rotation.x = -1 * maxRotationAngle * mouseY; // Rotate around x-axis based on mouse y-position
+// }
 
 let intersected = false; // Track if we're currently intersecting the object
 
