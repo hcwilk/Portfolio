@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { TextGeometry } from 'three/src/geometries/TextGeometry';
 import { TTFLoader } from 'three/examples/jsm/loaders/TTFLoader.js';
+import { isMobile } from '../utils/isMobile';
 
 async function createTextMesh() {
     return new Promise((resolve, reject) => {
@@ -14,8 +15,8 @@ async function createTextMesh() {
             lines.forEach((line, index) => {
                 const textGeometry = new TextGeometry(line, {
                     font: font,
-                    size: 5,
-                    height: 2,
+                    size: isMobile() ? 3 : 5,
+                    height: 1.2,
                 });
 
                 const textMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
