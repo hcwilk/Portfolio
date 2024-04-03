@@ -75,11 +75,14 @@ async function onPointerDown(event) {
         clientY = event.clientY;
     }
 
-    mouse.x = (clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
+    mouse.x = ((clientX + window.scrollX) / window.innerWidth) * 2 - 1;
+    mouse.y = -((clientY + window.scrollY) / window.innerHeight) * 2 + 1;
+
     raycaster.setFromCamera(mouse, camera);
 
     const intersects = raycaster.intersectObjects(scene.children, true);
+
+    console.log('Intersects:', intersects);
 
     for (let i = 0; i < intersects.length; i++) {
         let object = intersects[i].object;
@@ -117,11 +120,16 @@ let INTERSECTED;
 
 async function onMouseMove(event) {
     if (isMobile()) return;
-    const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-    const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    const mouseX = ((event.clientX + window.scrollX) / window.innerWidth) * 2 - 1;
+    const mouseY = -((event.clientY + window.scrollY) / window.innerHeight) * 2 + 1;
+
 
     mouse.x = mouseX;
     mouse.y = mouseY;
+    // if mouse y is off screen,return 
+    if (mouse.y > 1 || mouse.y < -1) return;
+
+
     const maxRotationAngle = Math.PI / 180 * 20;
     scene.rotation.y = maxRotationAngle * mouseX / 2;
     scene.rotation.x = -1 * maxRotationAngle * mouseY;
