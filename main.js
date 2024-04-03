@@ -87,6 +87,8 @@ async function onMouseMove(event) {
 
     if (intersects.length > 0) {
         const intersectedGroup = intersects[0].object.parent;
+        document.body.style.cursor = 'pointer';
+
 
 
 
@@ -112,6 +114,7 @@ async function onMouseMove(event) {
 
         }
     } else {
+        document.body.style.cursor = 'auto';
         if (INTERSECTED) {
 
             INTERSECTED.scale.set(1, 1, 1);
