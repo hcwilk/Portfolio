@@ -9,13 +9,13 @@ const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
 let textMesh; // Declare the textMesh variable in the global scope
-let itemMesh
-
+let sphereMesh; // Declare the sphereMesh variable in the global scope
 async function init() {
     textMesh = await createTextMesh();
-    itemMesh = await createItemMesh();
+    sphereMesh = await createItemMesh();
+
     scene.add(textMesh);
-    scene.add(itemMesh);
+    scene.add(sphereMesh);
     animate();
 }
 
@@ -53,21 +53,20 @@ function onDocumentMouseClick(event) {
 
 // stuff
 
-// window.addEventListener('mousemove', onMouseMove, false);
+window.addEventListener('mousemove', onMouseMove, false);
 
-// function onMouseMove(event) {
-//     // Calculate mouse position in normalized device coordinates
-//     // (-1 to +1) for both components
-//     const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-//     const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-//     // Set the scene or camera rotation based on the mouse position
-//     // Here, we're applying a small rotation to the scene. Adjust the factors to control the sensitivity.
-//     const maxRotationAngle = Math.PI / 180 * 50; // Max rotation of 5 degrees
-//     scene.rotation.y = maxRotationAngle * mouseX / 2; // Rotate around y-axis based on mouse x-position
-//     scene.rotation.x = -1 * maxRotationAngle * mouseY; // Rotate around x-axis based on mouse y-position
-// }
+function onMouseMove(event) {
+    // Calculate mouse position in normalized device coordinates
+    // (-1 to +1) for both components
+    const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+    const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    // Set the scene or camera rotation based on the mouse position
+    // Here, we're applying a small rotation to the scene. Adjust the factors to control the sensitivity.
+    const maxRotationAngle = Math.PI / 180 * 50; // Max rotation of 5 degrees
+    scene.rotation.y = maxRotationAngle * mouseX / 2; // Rotate around y-axis based on mouse x-position
+    scene.rotation.x = -1 * maxRotationAngle * mouseY; // Rotate around x-axis based on mouse y-position
+}
 
-let intersected = false; // Track if we're currently intersecting the object
 
 
 
@@ -76,6 +75,7 @@ function animate() {
 
     // cube.rotation.x += 0.01;
     // cube.rotation.y += 0.01;
+    // sphereMesh.rotation.y += 0.01;
 
     renderer.render(scene, camera);
 }
