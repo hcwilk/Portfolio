@@ -28,7 +28,8 @@ function addStarField() {
     scene.add(stars);
 }
 
-const titles = document.querySelectorAll('.work-title');
+const titles = document.querySelectorAll('.work-title, .company-title');
+
 
 
 
@@ -48,6 +49,7 @@ async function init() {
 
     titles.forEach(title => {
         title.addEventListener('click', () => {
+            console.log('clicked');
             const workList = title.nextElementSibling; // Assuming .work-list follows .work-title
             if (workList.classList.contains('active')) {
                 workList.style.height = null;

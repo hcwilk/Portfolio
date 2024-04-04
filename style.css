@@ -76,12 +76,12 @@ main {
 
 section {
   height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
-  width: 80%;
-  background: #f4f4f4;
-  margin-bottom: 40px;
-  scroll-margin-top: 30px;
-  border-radius: 40px;
+  background-color: darkgray;
+  width: 90%;
 }
 
 div {
