@@ -12,7 +12,7 @@
   font-family: "Normal";
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .work-experience {
     width: 90%;
   }
@@ -77,11 +77,15 @@ hr {
   justify-content: space-between;
   background: #f4f4f4;
   border: none;
-
   width: 95%;
   height: fit-content;
 }
-
+@media (max-width: 768px) {
+  .whole-line {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
 .about-me {
   font-size: x-large;
   padding-right: 15px;
@@ -92,4 +96,33 @@ hr {
   font-family: "Normal-Bold", sans-serif;
   font-size: xx-large;
   margin-top: 12px;
+}
+
+.comp-title {
+  width: 33%;
+  text-align: left;
+  font-family: "Normal-Bold", sans-serif;
+}
+
+.job-title {
+  width: 33%;
+}
+
+.time-frame {
+  width: 33%;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .comp-title {
+    text-align: center;
+    width: 100%;
+  }
+  .time-frame {
+    text-align: center;
+    width: 100%;
+  }
+  .job-title {
+    width: 100%;
+  }
 }
