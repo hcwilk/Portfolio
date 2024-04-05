@@ -6,6 +6,23 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Normal";
+  src: url("./public/fonts/Raleway-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 body,
 html {
   margin: 0;
@@ -80,7 +97,6 @@ section {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: darkgray;
   width: 90%;
 }
 

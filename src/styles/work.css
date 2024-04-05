@@ -1,14 +1,15 @@
 .work-experience {
-  width: 90%;
+  width: 66%;
   background: #f4f4f4;
   margin-bottom: 40px;
   padding: 10px;
   border-radius: 40px;
-  scroll-margin-top: 45px;
+  scroll-margin-top: 95px;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: fit-content;
+  font-family: "Normal";
 }
 
 .work-title {
@@ -40,7 +41,9 @@ hr {
 }
 .company-title {
   border: none;
+  outline: none;
   font-family: "AstroSpace", sans-serif;
+  width: 100%;
 }
 
 .company-desc {
@@ -57,4 +60,20 @@ hr {
 
 .work-item h3 {
   margin: 0;
+}
+
+.whole-line {
+  display: flex;
+  justify-content: space-between;
+  background: #f4f4f4;
+  border: none;
+
+  width: 100%;
+  height: fit-content;
+}
+
+.about-me {
+  font-size: x-large;
+  padding-right: 15px;
+  padding-left: 15px;
 }
