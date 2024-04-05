@@ -86,6 +86,11 @@ hr {
     gap: 5px;
   }
 }
+
+.whole-line:hover {
+  cursor: pointer;
+  background-color: #e0e0e0;
+}
 .about-me {
   font-size: x-large;
   padding-right: 15px;
@@ -104,15 +109,18 @@ hr {
   width: 33%;
   text-align: left;
   font-family: "Normal-Bold", sans-serif;
+  font-size: large;
 }
 
 .job-title {
   width: 33%;
+  font-size: large;
 }
 
 .time-frame {
   width: 33%;
   text-align: right;
+  font-size: large;
 }
 
 @media (max-width: 768px) {
