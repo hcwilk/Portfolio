@@ -12,6 +12,12 @@
   font-family: "Normal";
 }
 
+@media (max-width: 768px) {
+  .work-experience {
+    width: 90%;
+  }
+}
+
 .work-title {
   border: none;
   outline: none;

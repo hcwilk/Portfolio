@@ -11,13 +11,13 @@ export function adjustForMobile(textMesh, i) {
         textMesh.position.set(-4.5, -7, 0);
     }
     else if (i == 3) {
-        textMesh.position.set(-4.3, 6, 0);
+        textMesh.position.set(-4.7, 6, 0);
     }
     else if (i == 4) {
-        textMesh.position.set(-7.8, 6, 0);
+        textMesh.position.set(-3.3, 6, 0);
     }
     else if (i == 5) {
-        textMesh.position.set(-5.4, 6, 0);
+        textMesh.position.set(-3.1, 6, 0);
     }
     else {
         textMesh.position.set(-4, -7, 0);
