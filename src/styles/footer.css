@@ -60,6 +60,7 @@ button[type="submit"] {
   cursor: pointer;
   width: 80%;
   margin-top: 10px;
+  height: 40px;
 }
 
 button[type="submit"]:hover {
