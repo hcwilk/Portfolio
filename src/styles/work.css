@@ -90,12 +90,14 @@ hr {
   font-size: x-large;
   padding-right: 15px;
   padding-left: 15px;
+  padding-bottom: 15px;
 }
 
 .section-title {
   font-family: "Normal-Bold", sans-serif;
   font-size: xx-large;
   margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 .comp-title {
