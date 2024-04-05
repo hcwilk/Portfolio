@@ -120,20 +120,16 @@ async function onPointerDown(event) {
         console.log('Object with userData:', object);
         if (object.userData) {
             if (object.userData.isResume) {
-                const link = document.createElement('a');
-                link.href = object.userData['URL'];
-                console.log('Resume URL:', object.userData['URL']);
-                link.download = 'Cole_Wilkinson_Resume.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                console.log('Resume download triggered');
+                const resumeURL = object.userData['URL'];
+                console.log('Resume URL:', resumeURL);
+                window.open(resumeURL, '_blank'); // Opens the resume URL in a new tab
+                console.log('Resume view in browser triggered');
             } else if (object.userData['URL']) {
                 window.location.href = object.userData['URL'];
                 console.log('Redirecting to URL:', object.userData['URL']);
             }
-            break;
         }
+
     }
 }
 
