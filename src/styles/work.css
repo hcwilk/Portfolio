@@ -76,6 +76,24 @@ hr {
   margin: 0;
 }
 
+@property --myColor1 {
+  syntax: "<color>";
+  initial-value: #c3cdd6;
+  inherits: false;
+}
+
+@property --myColor2 {
+  syntax: "<color>";
+  initial-value: #909ba5;
+  inherits: false;
+}
+
+@property --myColor3 {
+  syntax: "<color>";
+  initial-value: black;
+  inherits: false;
+}
+
 .whole-line {
   display: flex;
   justify-content: space-between;
@@ -83,14 +101,18 @@ hr {
   width: 95%;
   padding: 10px;
   height: fit-content;
-  background: linear-gradient(
-    to right,
-    #adb5bd,
-    #30353a,
-    #adb5bd
-  ); /* Light to dark to light */
+  background: linear-gradient(var(--myColor1), var(--myColor2));
+  transition: --myColor1 0.5s, --myColor2 0.5s, --myColor3 0.5s;
+  color: var(--myColor3);
+
   border-radius: 10px;
   box-shadow: 10px 5px 5px black;
+}
+
+.whole-line:hover {
+  --myColor1: #4e545a;
+  --myColor2: #191b1d;
+  --myColor3: white;
 }
 
 @media (max-width: 768px) {
@@ -128,7 +150,6 @@ hr {
 .job-title {
   width: 33%;
   font-size: large;
-  color: white;
 }
 
 .time-frame {
