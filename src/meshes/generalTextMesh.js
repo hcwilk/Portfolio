@@ -7,14 +7,14 @@ async function createGeneralTextMesh(text) {
     const ttfLoader = new TTFLoader();
 
     try {
-        const buffer = await ttfLoader.loadAsync('fonts/Atmospheric-rg4aL.ttf');
+        const buffer = await ttfLoader.loadAsync('/fonts/SFNSText-Regular.ttf');
         const font = new THREE.FontLoader().parse(buffer);
 
         const textGeo = new TextGeometry(text, {
             font: font,
-            size: 1,
+            size: 2.5,
             height: 0.1,
-        });
+        })
 
         const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
         const textMesh = new THREE.Mesh(textGeo, textMaterial);

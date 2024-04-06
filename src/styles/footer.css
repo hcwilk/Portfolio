@@ -19,7 +19,7 @@
   border-radius: 20px;
   margin-bottom: 20px;
   background-color: gray;
-  box-shadow: 10px 5px 5px black;
+  /* box-shadow: 10px 5px 5px black; */
 }
 @media (max-width: 1024px) {
   .form-wrapper {
@@ -49,6 +49,8 @@
 .form-input {
   width: 100%;
   padding: 10px;
+  resize: none;
+
   box-sizing: border-box;
   border-radius: 5px;
   color: black;

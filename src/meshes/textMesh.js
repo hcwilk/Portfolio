@@ -6,7 +6,7 @@ import { isMobile } from '../utils/isMobile';
 async function createTextMesh() {
     return new Promise((resolve, reject) => {
         const ttfLoader = new TTFLoader();
-        ttfLoader.load('fonts/Atmospheric-rg4aL.ttf', function (buffer) {
+        ttfLoader.load('/fonts/SFNSText-Regular.ttf', function (buffer) {
             const font = new THREE.FontLoader().parse(buffer);
 
             const lines = ["Cole", "Wilkinson"];
@@ -15,7 +15,7 @@ async function createTextMesh() {
             lines.forEach((line, index) => {
                 const textGeometry = new TextGeometry(line, {
                     font: font,
-                    size: isMobile() ? 3 : 5,
+                    size: isMobile() ? 3 : 6,
                     height: 1.2,
                 });
 

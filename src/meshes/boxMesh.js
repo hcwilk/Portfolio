@@ -13,12 +13,14 @@ async function createBoxLabel(text, i) {
     const ttfLoader = new TTFLoader();
 
     try {
-        const buffer = await ttfLoader.loadAsync('fonts/Atmospheric-rg4aL.ttf');
+        const buffer = await ttfLoader.loadAsync('/fonts/SFNSText-Regular.ttf');
         const font = new THREE.FontLoader().parse(buffer);
+
+        // reverse font direction
 
         const textGeo = new TextGeometry(text, {
             font: font,
-            size: 1,
+            size: 1.5,
             height: 0.1,
         });
 

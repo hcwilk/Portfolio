@@ -21,6 +21,7 @@
 .work-title {
   border: none;
   outline: none;
+  height: fit-content;
   font-family: "AstroSpace", sans-serif;
 }
 
@@ -66,7 +67,7 @@ hr {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: height 0.5s ease-out; /* Adjust time as needed */
+  transition: height 0.25s ease-out; /* Adjust time as needed */
 }
 
 .company-desc.active {
@@ -107,7 +108,7 @@ hr {
   color: var(--myColor3);
 
   border-radius: 10px;
-  box-shadow: 10px 5px 5px black;
+  /* box-shadow: 10px 5px 5px black; */
 }
 
 .whole-line:hover {
