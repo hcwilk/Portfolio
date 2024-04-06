@@ -52,6 +52,7 @@
   box-sizing: border-box;
   border-radius: 5px;
   color: black;
+  font-family: "Normal", sans-serif;
 }
 
 .form-button {
