@@ -49,7 +49,6 @@ async function init() {
 
     titles.forEach(title => {
         title.addEventListener('click', () => {
-            console.log('clicked');
             const workList = title.nextElementSibling; // Assuming .work-list follows .work-title
             if (workList.classList.contains('active')) {
                 workList.style.height = null;
@@ -81,22 +80,20 @@ const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
 window.addEventListener('click', onPointerDown, false);
-window.addEventListener('touchend', onPointerDown, false); // Add this line
+window.addEventListener('touchend', onPointerDown, false);
 
 
 async function onPointerDown(event) {
     let clientX, clientY;
 
-    // Check for touch event and preventDefault safely
     if (event.changedTouches) {
         if (event.type === "touchend") {
             clientX = event.changedTouches[0].clientX;
             clientY = event.changedTouches[0].clientY;
         } else {
-            event.preventDefault(); // Prevent default only for touchstart/move
+            event.preventDefault();
         }
     } else {
-        // It's a mouse event, proceed as before
         clientX = event.clientX;
         clientY = event.clientY;
     }
@@ -108,25 +105,18 @@ async function onPointerDown(event) {
 
     const intersects = raycaster.intersectObjects(scene.children, true);
 
-    console.log('Intersects:', intersects);
 
     for (let i = 0; i < intersects.length; i++) {
         let object = intersects[i].object;
-        console.log('iteration:', i)
         while (object.parent && !object.userData['URL']) {
-            console.log('Object without userData:', object);
             object = object.parent;
         }
-        console.log('Object with userData:', object);
         if (object.userData) {
             if (object.userData.isResume) {
                 const resumeURL = object.userData['URL'];
-                console.log('Resume URL:', resumeURL);
                 window.open(resumeURL, '_blank'); // Opens the resume URL in a new tab
-                console.log('Resume view in browser triggered');
             } else if (object.userData['URL']) {
                 window.location.href = object.userData['URL'];
-                console.log('Redirecting to URL:', object.userData['URL']);
             }
         }
 
@@ -215,13 +205,10 @@ async function onMouseMove(event) {
 }
 
 
-
-
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
 }
-
 animate();
 
 
