@@ -1,6 +1,6 @@
-footer {
-  position: relative;
+.test {
   width: 100%;
+  height: fit-content;
   background-color: #333;
   color: white;
   padding: 10px;
@@ -10,14 +10,19 @@ footer {
   align-items: center;
 }
 
-#form-wrapper {
+.form-wrapper {
   display: flex;
   justify-content: center;
-  height: 300px;
+  height: fit-content;
   width: 80%;
   max-width: 600px;
   border-radius: 20px;
   background-color: gray;
+}
+@media (max-width: 1024px) {
+  .form-wrapper {
+    width: 90%;
+  }
 }
 
 #contact-form {
@@ -36,22 +41,22 @@ footer {
   margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
+.form-label {
+  margin-bottom: 50px;
 }
 
 .form-group input,
 .form-group textarea {
-  width: 70%;
+  width: 100%;
   padding: 10px;
   box-sizing: border-box;
   border-radius: 5px;
 }
 
-button[type="submit"] {
+.form-button {
   font-family: "AstroSpace", sans-serif;
   border-radius: 5px;
   background-color: #333;
