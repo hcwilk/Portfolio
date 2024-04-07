@@ -7,7 +7,7 @@ async function createGeneralTextMesh(text) {
     const ttfLoader = new TTFLoader();
 
     try {
-        const buffer = await ttfLoader.loadAsync('/fonts/SFNSText-Regular.ttf');
+        const buffer = await ttfLoader.loadAsync('/fonts/SFNSText-SemiBold.ttf');
         const font = new THREE.FontLoader().parse(buffer);
 
         const textGeo = new TextGeometry(text, {

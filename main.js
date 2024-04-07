@@ -28,41 +28,45 @@ function addStarField() {
     scene.add(stars);
 }
 
-const titles = document.querySelectorAll('.work-title, .company-title');
+const titles = document.querySelectorAll(' .company-title');
 
 
 
 
 let textMesh;
 let boxMesh;
-let generalTextMesh;
-// let cubeMesh;
 async function init() {
     textMesh = await createTextMesh();
     boxMesh = await createBoxMesh();
-    // generalTextMesh = await createGeneralTextMesh(isMobile().toString());
 
     scene.add(textMesh);
     scene.add(boxMesh);
-    // scene.add(generalTextMesh);
-    // scene.add(cubeMesh);
-
     titles.forEach(title => {
         title.addEventListener('click', () => {
-            const workList = title.nextElementSibling; // Assuming .work-list follows .work-title
+            const workList = title.nextElementSibling;
+
             if (workList.classList.contains('active')) {
                 workList.style.height = null;
                 workList.classList.remove('active');
+
+                let bot = title.parentElement.querySelector('.testtest')
+                bot.classList.remove('testtest-bottom');
             } else {
                 const prevHeight = workList.clientHeight;
                 workList.classList.add('active');
                 const fullHeight = workList.clientHeight;
                 workList.style.height = prevHeight + 'px';
                 workList.offsetHeight; // Force reflow
-                workList.style.height = fullHeight + 'px';
+                workList.style.height = (fullHeight + 100) + 'px';
+
+                // Move .testtest to the bottom of the .company-title
+                let bot = title.parentElement.querySelector('.testtest')
+                bot.classList.add('testtest-bottom');
             }
         })
     })
+    // ...
+
 
 
 

@@ -42,6 +42,7 @@ hr {
 
 .work-item {
   overflow: hidden;
+  position: relative;
   margin: 5px;
   padding: 5px;
   width: 100%;
@@ -58,6 +59,7 @@ hr {
   font-family: "Normal", sans-serif;
   width: 100%;
   height: fit-content;
+  position: relative; /* Add this line */
 }
 
 .company-desc {
@@ -66,6 +68,7 @@ hr {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: start;
   overflow: hidden;
   transition: height 0.25s ease-out; /* Adjust time as needed */
 }
@@ -97,6 +100,7 @@ hr {
 }
 
 .whole-line {
+  position: relative;
   display: flex;
   justify-content: space-between;
   border: none;
@@ -106,9 +110,32 @@ hr {
   background: linear-gradient(var(--myColor1), var(--myColor2));
   transition: --myColor1 0.5s, --myColor2 0.5s, --myColor3 0.5s;
   color: var(--myColor3);
+  z-index: 5;
 
   border-radius: 10px;
   /* box-shadow: 10px 5px 5px black; */
+}
+
+.testtest {
+  position: absolute;
+  background-color: black;
+  height: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  width: calc(100% - 80px); /* Updated this line: 22px padding on each side */
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  justify-self: center;
+  transition: top 0.5s ease, bottom 0.5s ease, width 0.5s ease;
+}
+
+.testtest-bottom {
+  top: 150px;
+  bottom: 10px;
+  height: 60px;
+  width: 50%;
 }
 
 .whole-line:hover {

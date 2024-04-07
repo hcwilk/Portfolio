@@ -6,7 +6,7 @@ import { isMobile } from '../utils/isMobile';
 async function createTextMesh() {
     return new Promise((resolve, reject) => {
         const ttfLoader = new TTFLoader();
-        ttfLoader.load('/fonts/SFNSText-Regular.ttf', function (buffer) {
+        ttfLoader.load('/fonts/SFNSText-SemiBold.ttf', function (buffer) {
             const font = new THREE.FontLoader().parse(buffer);
 
             const lines = ["Cole", "Wilkinson"];
