@@ -96,7 +96,13 @@ main {
 #threejs-container {
   z-index: 10;
   position: relative;
-  height: fit-content;
+  height: 100vh;
+}
+
+@media screen and (max-width: 768px) {
+  #threejs-container {
+    height: 0;
+  }
 }
 
 section {
@@ -107,6 +113,12 @@ section {
   padding: 20px;
   width: 90%;
   scroll-margin-top: 60px;
+}
+
+@media screen and (max-width: 768px) {
+  section {
+    padding-top: 120px;
+  }
 }
 
 div {
