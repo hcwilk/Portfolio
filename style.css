@@ -136,7 +136,7 @@ div {
   }
 }
 
-#loading-screen svg rect {
+#loading-screen svg ellipse {
   transform-origin: center;
   animation: spin 2s linear infinite;
 }
