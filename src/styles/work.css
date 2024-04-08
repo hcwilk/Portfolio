@@ -10,11 +10,34 @@
   align-items: center;
   height: fit-content;
   font-family: "Normal";
+  position: relative;
 }
 
 @media (max-width: 1024px) {
   .work-experience {
     width: 90%;
+  }
+}
+
+.work-title {
+  border: none;
+  outline: none;
+  height: fit-content;
+  font-family: "AstroSpace", sans-serif;
+}
+
+.git-a {
+  position: absolute;
+  left: 92%;
+  top: 4%;
+  height: fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .git-a {
+    left: 80%;
   }
 }
 
