@@ -98,6 +98,9 @@ async function init() {
     textMesh = await createTextMesh();
     boxMesh = await createBoxMesh();
 
+    document.getElementById('loading-screen').style.display = 'none';
+
+
     scene.add(textMesh);
     scene.add(boxMesh);
     titles.forEach(title => {
