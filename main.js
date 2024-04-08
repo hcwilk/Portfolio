@@ -30,62 +30,62 @@ import { isMobile } from './src/utils/isMobile';
 //     })
 // })
 
-const galleryContainer = document.querySelector('.gallery-container');
-const galleryControlsContainer = document.querySelector('.gallery-controls');
-const galleryControls = ['previous', 'next'];
+// const galleryContainer = document.querySelector('.gallery-container');
+// const galleryControlsContainer = document.querySelector('.gallery-controls');
+// const galleryControls = ['previous', 'next'];
 
-const galleryItems = document.querySelectorAll('.gallery-item');
+// const galleryItems = document.querySelectorAll('.gallery-item');
 
-class Carousel {
+// class Carousel {
 
-    constructor(container, items, controls) {
-        this.carouselContainer = container;
-        this.carouselControls = controls;
-        this.carouselArray = [...items];
+//     constructor(container, items, controls) {
+//         this.carouselContainer = container;
+//         this.carouselControls = controls;
+//         this.carouselArray = [...items];
 
-    }
+//     }
 
-    updateGallery() {
-        this.carouselArray.forEach(el => {
-            el.classList.remove('gallery-item-1');
-            el.classList.remove('gallery-item-2');
-            el.classList.remove('gallery-item-3');
-            el.classList.remove('gallery-item-4');
-            el.classList.remove('gallery-item-5');
-        });
+//     updateGallery() {
+//         this.carouselArray.forEach(el => {
+//             el.classList.remove('gallery-item-1');
+//             el.classList.remove('gallery-item-2');
+//             el.classList.remove('gallery-item-3');
+//             el.classList.remove('gallery-item-4');
+//             el.classList.remove('gallery-item-5');
+//         });
 
 
-        this.carouselArray.slice(0, 5).forEach((item, index) => {
-            item.classList.add(`gallery-item-${index + 1}`);
-        })
-    }
-    setCurrentState(direction) {
-        console.log(direction);
+//         this.carouselArray.slice(0, 5).forEach((item, index) => {
+//             item.classList.add(`gallery-item-${index + 1}`);
+//         })
+//     }
+//     setCurrentState(direction) {
+//         console.log(direction);
 
-        if (direction.className === 'gallery-controls-previous') {
-            console.log('previous');
-            this.carouselArray.unshift(this.carouselArray.pop());
-        } else {
-            console.log('next');
-            this.carouselArray.push(this.carouselArray.shift());
-        }
-        this.updateGallery();
-    }
+//         if (direction.className === 'gallery-controls-previous') {
+//             console.log('previous');
+//             this.carouselArray.unshift(this.carouselArray.pop());
+//         } else {
+//             console.log('next');
+//             this.carouselArray.push(this.carouselArray.shift());
+//         }
+//         this.updateGallery();
+//     }
 
-    userControls() {
-        const trigger = [...galleryControlsContainer.childNodes]
-        trigger.forEach(control => {
-            control.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.setCurrentState(control);
-            })
-        })
-    }
-}
+//     userControls() {
+//         const trigger = [...galleryControlsContainer.childNodes]
+//         trigger.forEach(control => {
+//             control.addEventListener('click', (e) => {
+//                 e.preventDefault();
+//                 this.setCurrentState(control);
+//             })
+//         })
+//     }
+// }
 
-const test = new Carousel(galleryContainer, galleryItems, galleryControls);
+// const test = new Carousel(galleryContainer, galleryItems, galleryControls);
 
-test.userControls();
+// test.userControls();
 
 const titles = document.querySelectorAll(' .company-title');
 
@@ -108,23 +108,31 @@ async function init() {
                 workList.style.height = null;
                 workList.classList.remove('active');
 
-                let bot = title.parentElement.querySelector('.testtest')
-                bot.classList.remove('testtest-bottom');
+                // let bot = title.parentElement.querySelector('.testtest')
+                // bot.classList.remove('testtest-bottom');
+                // bot.style.top = '12px';
+
+                let bot = title.parentElement.querySelector('.solid-background')
+                bot.classList.remove('solid-background-bottom');
                 bot.style.top = '12px';
 
-                let child = bot.querySelector('.gallery');
-                child.style.display = 'none';
+                // let child = bot.querySelector('.gallery');
+                // child.style.display = 'none';
             } else {
                 const prevHeight = workList.clientHeight;
                 workList.classList.add('active');
                 const fullHeight = workList.clientHeight;
                 workList.style.height = prevHeight + 'px';
                 workList.offsetHeight; // Force reflow
-                workList.style.height = (fullHeight + 420) + 'px';
+                workList.style.height = (fullHeight) + 'px';
 
-                let bot = title.parentElement.querySelector('.testtest')
-                bot.classList.add('testtest-bottom');
-                bot.style.top = (fullHeight + 70) + 'px';
+                // let bot = title.parentElement.querySelector('.testtest')
+                // bot.classList.add('testtest-bottom');
+                // bot.style.top = (fullHeight + 70) + 'px';
+
+                let bot = title.parentElement.querySelector('.solid-background')
+                bot.classList.add('solid-background-bottom');
+                bot.style.top = (fullHeight + 60) + 'px';
 
                 let child = bot.querySelector('.gallery');
                 child.style.display = 'flex';
