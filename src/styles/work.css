@@ -169,8 +169,7 @@ hr {
 
 @media screen and (max-width: 768px) {
   .solid-background {
-    height: 0;
-    overflow: hidden;
+    display: none;
   }
 }
 
