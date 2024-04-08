@@ -112,9 +112,11 @@ async function init() {
                 // bot.classList.remove('testtest-bottom');
                 // bot.style.top = '12px';
 
-                let bot = title.parentElement.querySelector('.solid-background')
-                bot.classList.remove('solid-background-bottom');
-                bot.style.top = '12px';
+                if (!isMobile()) {
+                    let bot = title.parentElement.querySelector('.solid-background')
+                    bot.classList.remove('solid-background-bottom');
+                    bot.style.top = '12px';
+                }
 
                 // let child = bot.querySelector('.gallery');
                 // child.style.display = 'none';
@@ -130,9 +132,12 @@ async function init() {
                 // bot.classList.add('testtest-bottom');
                 // bot.style.top = (fullHeight + 70) + 'px';
 
-                let bot = title.parentElement.querySelector('.solid-background')
-                bot.classList.add('solid-background-bottom');
-                bot.style.top = (fullHeight + 60) + 'px';
+                if (!isMobile()) {
+                    let bot = title.parentElement.querySelector('.solid-background')
+                    bot.classList.add('solid-background-bottom');
+                    bot.style.top = (fullHeight + 60) + 'px';
+
+                }
 
                 let child = bot.querySelector('.gallery');
                 child.style.display = 'flex';
