@@ -121,7 +121,7 @@ hr {
   background-color: black;
   height: 20px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 25px;
   width: calc(100% - 80px); /* Updated this line: 22px padding on each side */
   top: 12px;
   left: 50%;
@@ -134,8 +134,8 @@ hr {
 .testtest-bottom {
   top: 150px;
   bottom: 10px;
-  height: 60px;
-  width: 50%;
+  height: 380px;
+  width: 90%;
 }
 
 .whole-line:hover {

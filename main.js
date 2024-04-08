@@ -1,6 +1,7 @@
 import './style.css';
 import './src/styles/footer.css'
 import './src/styles/work.css'
+import './src/styles/carousel.css'
 import { createBoxMesh } from './src/meshes/boxMesh';
 import { createTextMesh } from './src/meshes/textMesh';
 import { createGeneralTextMesh } from './src/meshes/generalTextMesh';
@@ -10,23 +11,81 @@ import { TextGeometry } from 'three/src/geometries/TextGeometry';
 import { isMobile } from './src/utils/isMobile';
 
 
-function addStarField() {
-    const starsGeometry = new THREE.BufferGeometry();
-    const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.7 });
+// const buttons = document.querySelectorAll("[data-carousel-button]")
 
-    const starVertices = [];
-    for (let i = 0; i < 10000; i++) {
-        const x = THREE.MathUtils.randFloatSpread(2000);
-        const y = THREE.MathUtils.randFloatSpread(2000);
-        const z = THREE.MathUtils.randFloatSpread(2000);
-        starVertices.push(x, y, z);
+// buttons.forEach(button => {
+//     button.addEventListener("click", () => {
+//         const offset = button.dataset.carouselButton === "next" ? 1 : -1
+//         const slides = button
+//             .closest("[data-carousel]")
+//             .querySelector("[data-slides]")
+
+//         const activeSlide = slides.querySelector("[data-active]")
+//         let newIndex = [...slides.children].indexOf(activeSlide) + offset
+//         if (newIndex < 0) newIndex = slides.children.length - 1
+//         if (newIndex >= slides.children.length) newIndex = 0
+
+//         slides.children[newIndex].dataset.active = true
+//         delete activeSlide.dataset.active
+//     })
+// })
+
+const galleryContainer = document.querySelector('.gallery-container');
+const galleryControlsContainer = document.querySelector('.gallery-controls');
+const galleryControls = ['previous', 'next'];
+
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+class Carousel {
+
+    constructor(container, items, controls) {
+        this.carouselContainer = container;
+        this.carouselControls = controls;
+        this.carouselArray = [...items];
+
     }
 
-    starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-    const stars = new THREE.Points(starsGeometry, starsMaterial);
+    updateGallery() {
+        this.carouselArray.forEach(el => {
+            el.classList.remove('gallery-item-1');
+            el.classList.remove('gallery-item-2');
+            el.classList.remove('gallery-item-3');
+            el.classList.remove('gallery-item-4');
+            el.classList.remove('gallery-item-5');
+        });
 
-    scene.add(stars);
+
+        this.carouselArray.slice(0, 5).forEach((item, index) => {
+            item.classList.add(`gallery-item-${index + 1}`);
+        })
+    }
+    setCurrentState(direction) {
+        console.log(direction);
+
+        if (direction.className === 'gallery-controls-previous') {
+            console.log('previous');
+            this.carouselArray.unshift(this.carouselArray.pop());
+        } else {
+            console.log('next');
+            this.carouselArray.push(this.carouselArray.shift());
+        }
+        this.updateGallery();
+    }
+
+    userControls() {
+        const trigger = [...galleryControlsContainer.childNodes]
+        trigger.forEach(control => {
+            control.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.setCurrentState(control);
+            })
+        })
+    }
 }
+
+const test = new Carousel(galleryContainer, galleryItems, galleryControls);
+
+test.userControls();
 
 const titles = document.querySelectorAll(' .company-title');
 
@@ -51,17 +110,24 @@ async function init() {
 
                 let bot = title.parentElement.querySelector('.testtest')
                 bot.classList.remove('testtest-bottom');
+                bot.style.top = '12px';
+
+                let child = bot.querySelector('.gallery');
+                child.style.display = 'none';
             } else {
                 const prevHeight = workList.clientHeight;
                 workList.classList.add('active');
                 const fullHeight = workList.clientHeight;
                 workList.style.height = prevHeight + 'px';
                 workList.offsetHeight; // Force reflow
-                workList.style.height = (fullHeight + 100) + 'px';
+                workList.style.height = (fullHeight + 420) + 'px';
 
-                // Move .testtest to the bottom of the .company-title
                 let bot = title.parentElement.querySelector('.testtest')
                 bot.classList.add('testtest-bottom');
+                bot.style.top = (fullHeight + 70) + 'px';
+
+                let child = bot.querySelector('.gallery');
+                child.style.display = 'flex';
             }
         })
     })
@@ -214,5 +280,4 @@ function animate() {
     renderer.render(scene, camera);
 }
 animate();
-
 
