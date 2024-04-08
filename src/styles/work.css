@@ -37,7 +37,8 @@
 
 @media screen and (max-width: 768px) {
   .git-a {
-    left: 80%;
+    left: 83%;
+    top: 5px;
   }
 }
 
@@ -169,6 +170,7 @@ hr {
 @media screen and (max-width: 768px) {
   .solid-background {
     height: 0;
+    overflow: hidden;
   }
 }
 
