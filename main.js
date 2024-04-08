@@ -98,8 +98,10 @@ async function init() {
     textMesh = await createTextMesh();
     boxMesh = await createBoxMesh();
 
-    scene.add(textMesh);
-    scene.add(boxMesh);
+    if (!isMobile()) {
+        scene.add(textMesh);
+        scene.add(boxMesh);
+    }
     titles.forEach(title => {
         title.addEventListener('click', () => {
             const workList = title.nextElementSibling;
@@ -155,7 +157,9 @@ async function init() {
 
 init();
 
-appendRendererToDOM('threejs-container');
+if (!isMobile()) {
+    appendRendererToDOM('threejs-container');
+}
 
 
 const raycaster = new THREE.Raycaster();
@@ -291,5 +295,7 @@ function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
 }
-animate();
+if (!isMobile()) {
+    animate();
+}
 

@@ -96,6 +96,7 @@ main {
 #threejs-container {
   z-index: 10;
   position: relative;
+  height: fit-content;
 }
 
 section {
