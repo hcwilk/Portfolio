@@ -126,7 +126,7 @@ async function init() {
                 const fullHeight = workList.clientHeight;
                 workList.style.height = prevHeight + 'px';
                 workList.offsetHeight; // Force reflow
-                workList.style.height = (fullHeight) + 'px';
+                workList.style.height = (fullHeight + 5) + 'px';
 
                 // let bot = title.parentElement.querySelector('.testtest')
                 // bot.classList.add('testtest-bottom');
@@ -135,8 +135,7 @@ async function init() {
                 if (!isMobile()) {
                     let bot = title.parentElement.querySelector('.solid-background')
                     bot.classList.add('solid-background-bottom');
-                    bot.style.top = (fullHeight + 60) + 'px';
-
+                    bot.style.top = (fullHeight + 65) + 'px';
                 }
 
                 let child = bot.querySelector('.gallery');
