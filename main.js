@@ -189,8 +189,6 @@ async function onPointerDown(event) {
     raycaster.setFromCamera(mouse, camera);
 
     const intersects = raycaster.intersectObjects(scene.children, true);
-
-
     for (let i = 0; i < intersects.length; i++) {
         let object = intersects[i].object;
         while (object.parent && !object.userData['URL']) {
@@ -199,12 +197,12 @@ async function onPointerDown(event) {
         if (object.userData) {
             if (object.userData.isResume) {
                 const resumeURL = object.userData['URL'];
-                window.open(resumeURL, '_blank'); // Opens the resume URL in a new tab
+                window.open(resumeURL, '_blank');
             } else if (object.userData['URL'] && object.userData['URL'].includes('http')) {
-                window.open(object.userData['URL'], '_blank'); // Opens the URL in the same tab
+                window.open(object.userData['URL'], '_blank');
             }
             else {
-                window.location.href = object.userData['URL']; // Redirects to the URL
+                window.location.href = object.userData['URL'];
             }
         }
 
