@@ -201,7 +201,7 @@ async function onPointerDown(event) {
                 const resumeURL = object.userData['URL'];
                 window.open(resumeURL, '_blank'); // Opens the resume URL in a new tab
             } else if (object.userData['URL']) {
-                window.location.href = object.userData['URL'];
+                window.open(object.userData['URL'], '_blank'); // Opens the URL in the same tab
             }
         }
 
