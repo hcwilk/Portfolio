@@ -200,8 +200,11 @@ async function onPointerDown(event) {
             if (object.userData.isResume) {
                 const resumeURL = object.userData['URL'];
                 window.open(resumeURL, '_blank'); // Opens the resume URL in a new tab
-            } else if (object.userData['URL']) {
+            } else if (object.userData['URL'] && object.userData['URL'].includes('http')) {
                 window.open(object.userData['URL'], '_blank'); // Opens the URL in the same tab
+            }
+            else {
+                window.location.href = object.userData['URL']; // Redirects to the URL
             }
         }
 
