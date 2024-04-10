@@ -27,9 +27,7 @@
 }
 
 .git-a {
-  position: absolute;
-  left: 92%;
-  top: 25px;
+  margin: 20px;
   height: fit-content;
   width: fit-content;
   cursor: pointer;
@@ -37,8 +35,8 @@
 
 @media screen and (max-width: 768px) {
   .git-a {
-    left: 83%;
-    top: 90px;
+    left: 80%;
+    top: 10px;
   }
 }
 
