@@ -28,7 +28,7 @@
             emailjs.sendForm("service_wdxy1dp", "template_t0kq4mn", this).then(
               () => {
                 console.log("SUCCESS!");
-                var x = document.getElementById("contact-form");
+                var x = document.getElementById("hide-this");
                 x.style.display = "none";
                 var y = document.getElementsByClassName("thank-you")[0];
                 y.style.height = "fit-content";
@@ -588,7 +588,7 @@
           <h1>Thank you for reaching out!</h1>
           <p>I'll get back to you as soon as possible.</p>
         </div>
-        <div class="form-wrapper">
+        <div class="form-wrapper" id="hide-this">
           <a
             class="git-a"
             href="https://www.linkedin.com/in/harrison-cole-wilkinson-528310191/"
