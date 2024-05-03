@@ -132,7 +132,10 @@ hr {
   width: 95%;
   padding: 10px;
   height: fit-content;
-  background: linear-gradient(var(--myColor1), var(--myColor2));
+  background: linear-gradient(
+    var(--myColor1, #c3cdd6),
+    var(--myColor2, #909ba5)
+  );
   transition: --myColor1 0.5s, --myColor2 0.5s, --myColor3 0.5s;
   color: var(--myColor3);
   z-index: 5;
@@ -147,7 +150,7 @@ hr {
   height: 20px;
   padding: 10px;
   border-radius: 25px;
-  width: calc(100% - 80px); /* Updated this line: 22px padding on each side */
+  width: calc(100% - 90px); /* Updated this line: 22px padding on each side */
   top: 12px;
   left: 50%;
   transform: translateX(-50%);
